@@ -12,17 +12,22 @@ struct TREE* CreatTree(int data) {
 	 mytree->Rtree = NULL;
 	 return mytree;
 }
-void PrintTree(LPTREE data)
-{
-	printf("%d",data->data);
-}
-void Printt1(LPTREE mytree)
+void Printt1(LPTREE mytree)//先序遍历
 {
 	if (mytree != NULL)
 	{
 		printf("%d",mytree->data);
 		Printt1(mytree->Ltree);
 		Printt1(mytree->Rtree);
+	}
+}
+void Printt2(LPTREE mytree)//中序遍历
+{
+	if (mytree != NULL)
+	{
+		printf("%d", mytree->data);
+		Printt2(mytree->Ltree);
+		Printt2(mytree->Rtree);
 	}
 
 }
