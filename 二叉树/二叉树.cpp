@@ -2,10 +2,10 @@
 #include<stdlib.h>
 typedef struct TREE {
 	int data;
-	struct TREE *Ltree;
-	struct TREE* Rtree;
+	struct TREE *Ltree;//左子树
+	struct TREE* Rtree;//右子树
 }TREE,*LPTREE;
-struct TREE* CreatTree(int data) {
+struct TREE* CreatTree(int data) {//创建树节点
      LPTREE mytree=(LPTREE)malloc(sizeof(TREE));
 	 mytree->data = data;
 	 mytree->Ltree = NULL;
