@@ -48,12 +48,12 @@ int main(void)
 	LPTREE s5 = CreatTree(5);
 	s1->Ltree = s2;s1->Rtree = s3;
 	s2->Ltree = s4;s2->Rtree = s5;
-	printf("先序遍历");
+	printf("递归先序遍历");
 	PrintTree1(s1);
 	printf("\n");
-	printf("中序遍历");
+	printf("递归中序遍历");
 	PrintTree2(s1);
 	printf("\n");
-	printf("后序遍历");
+	printf("递归后序遍历");
 	PrintTree3(s1);
 }
