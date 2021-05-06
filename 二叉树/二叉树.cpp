@@ -5,6 +5,14 @@ typedef struct TREE {
 	struct TREE *Ltree;//左子树
 	struct TREE* Rtree;//右子树
 }TREE,*LPTREE;
+struct Node {
+	int data;
+	struct Node* Next;
+};
+struct Stack {
+	int size;
+	struct Node *StackTop;
+};
 struct TREE* CreatTree(int data) {//创建树节点
      LPTREE mytree=(LPTREE)malloc(sizeof(TREE));
 	 mytree->data = data;
@@ -12,6 +20,13 @@ struct TREE* CreatTree(int data) {//创建树节点
 	 mytree->Rtree = NULL;
 	 return mytree;
 }
+struct Stack* CreatStack()
+{
+	struct Stack* myStack = (struct Stack*)malloc(sizeof(struct Stack));
+	myStack->StackTop = NULL;
+	return myStack;
+}
+struct Stack* Stack1 = CreatStack();
 void PrintTree1(LPTREE mytree)//先序遍历
 {
 	if (mytree != NULL)
@@ -39,6 +54,20 @@ void PrintTree3(LPTREE mytree)//中序遍历
 		printf("%4d", mytree->data);
 	}
 }
+void PrintTree4(LPTREE mytree)
+{
+	if(mytree->Ltree!=NULL)
+	{
+		
+	}
+}
+void push(int data)
+{
+	if (Stack1 == NULL)
+	{
+
+	}
+}
 int main(void)
 {
 	LPTREE s1 = CreatTree(1);
@@ -46,6 +75,7 @@ int main(void)
 	LPTREE s3 = CreatTree(3);
 	LPTREE s4 = CreatTree(4);
 	LPTREE s5 = CreatTree(5);
+	
 	s1->Ltree = s2;s1->Rtree = s3;
 	s2->Ltree = s4;s2->Rtree = s5;
 	printf("递归先序遍历");
