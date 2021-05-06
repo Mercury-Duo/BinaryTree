@@ -12,31 +12,31 @@ struct TREE* CreatTree(int data) {
 	 mytree->Rtree = NULL;
 	 return mytree;
 }
-void Printt1(LPTREE mytree)//先序遍历
+void PrintTree1(LPTREE mytree)//先序遍历
 {
 	if (mytree != NULL)
 	{
-		printf("%d",mytree->data);
-		Printt1(mytree->Ltree);
-		Printt1(mytree->Rtree);
+		printf("%4d",mytree->data);
+		PrintTree1(mytree->Ltree);
+		PrintTree1(mytree->Rtree);
 	}
 }
-void Printt2(LPTREE mytree)//中序遍历
+void PrintTree2(LPTREE mytree)//中序遍历
 {
 	if (mytree != NULL)
 	{
-		Printt2(mytree->Ltree);
-		printf("%d", mytree->data);
-		Printt2(mytree->Rtree);
+		PrintTree2(mytree->Ltree);
+		printf("%4d", mytree->data);
+		PrintTree2(mytree->Rtree);
 	}
 }
-void Printt3(LPTREE mytree)//中序遍历
+void PrintTree3(LPTREE mytree)//中序遍历
 {
 	if (mytree != NULL)
 	{
-		Printt3(mytree->Ltree);
-		Printt3(mytree->Rtree);
-		printf("%d", mytree->data);
+		PrintTree3(mytree->Ltree);
+		PrintTree3(mytree->Rtree);
+		printf("%4d", mytree->data);
 	}
 }
 int main(void)
@@ -48,9 +48,12 @@ int main(void)
 	LPTREE s5 = CreatTree(5);
 	s1->Ltree = s2;s1->Rtree = s3;
 	s2->Ltree = s4;s2->Rtree = s5;
-	Printt1(s1);
+	printf("先序遍历");
+	PrintTree1(s1);
 	printf("\n");
-	Printt2(s1);
+	printf("中序遍历");
+	PrintTree2(s1);
 	printf("\n");
-	Printt3(s1);
+	printf("后序遍历");
+	PrintTree3(s1);
 }
