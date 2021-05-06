@@ -25,11 +25,19 @@ void Printt2(LPTREE mytree)//中序遍历
 {
 	if (mytree != NULL)
 	{
-		printf("%d", mytree->data);
 		Printt2(mytree->Ltree);
+		printf("%d", mytree->data);
 		Printt2(mytree->Rtree);
 	}
-
+}
+void Printt3(LPTREE mytree)//中序遍历
+{
+	if (mytree != NULL)
+	{
+		Printt3(mytree->Ltree);
+		Printt3(mytree->Rtree);
+		printf("%d", mytree->data);
+	}
 }
 int main(void)
 {
@@ -41,5 +49,8 @@ int main(void)
 	s1->Ltree = s2;s1->Rtree = s3;
 	s2->Ltree = s4;s2->Rtree = s5;
 	Printt1(s1);
-	system("pause");
+	printf("\n");
+	Printt2(s1);
+	printf("\n");
+	Printt3(s1);
 }
