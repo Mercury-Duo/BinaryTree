@@ -2,21 +2,17 @@
 #include<stdlib.h>
 typedef struct TREE {
 	int data;
-	struct TREE *Ltree;//左子树
-	struct TREE* Rtree;//右子树
+	struct TREE *Ltree;		//左子树
+	struct TREE* Rtree;		//右子树
 }TREE,*LPTREE;
-struct Node {
-	int data;
-	struct Node* Next;
-};
-struct TREE* CreatTree(int data) {//创建树节点
+struct TREE* CreatTree(int data) {				//创建树节点
      LPTREE mytree=(LPTREE)malloc(sizeof(TREE));
 	 mytree->data = data;
 	 mytree->Ltree = NULL;
 	 mytree->Rtree = NULL;
 	 return mytree;
 }
-void PrintTree1(LPTREE mytree)//先序遍历
+void PrintTree1(LPTREE mytree)				//递归先序遍历
 {
 	if (mytree != NULL)
 	{
@@ -25,7 +21,7 @@ void PrintTree1(LPTREE mytree)//先序遍历
 		PrintTree1(mytree->Rtree);
 	}
 }
-void PrintTree2(LPTREE mytree)//中序遍历
+void PrintTree2(LPTREE mytree)				//递归中序遍历
 {
 	if (mytree != NULL)
 	{
@@ -34,7 +30,7 @@ void PrintTree2(LPTREE mytree)//中序遍历
 		PrintTree2(mytree->Rtree);
 	}
 }
-void PrintTree3(LPTREE mytree)//中序遍历
+void PrintTree3(LPTREE mytree)				//递归后序遍历
 {
 	if (mytree != NULL)
 	{
@@ -42,6 +38,21 @@ void PrintTree3(LPTREE mytree)//中序遍历
 		PrintTree3(mytree->Rtree);
 		printf("%4d", mytree->data);
 	}
+}
+void PrintTree4(LPTREE mytree)
+{	 
+	if (mytree == NULL)return;
+	LPTREE stack[10];					  //存储每次打印节点的位置
+	int stackTop = -1;				     //栈顶标记
+	LPTREE Pmove = mytree;				//从根节点开始
+	while (stackTop != -1 || Pmove)
+	{
+		printf("%4d", Pmove->data);
+		stack[++stackTop] = Pmove;
+		Pmove = Pmove->Ltree;
+	}
+	
+
 }
 int main(void)
 {
