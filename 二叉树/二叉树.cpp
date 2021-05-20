@@ -9,10 +9,6 @@ struct Node {
 	int data;
 	struct Node* Next;
 };
-struct Stack {
-	int size;
-	struct Node *StackTop;
-};
 struct TREE* CreatTree(int data) {//创建树节点
      LPTREE mytree=(LPTREE)malloc(sizeof(TREE));
 	 mytree->data = data;
@@ -20,13 +16,6 @@ struct TREE* CreatTree(int data) {//创建树节点
 	 mytree->Rtree = NULL;
 	 return mytree;
 }
-struct Stack* CreatStack()
-{
-	struct Stack* myStack = (struct Stack*)malloc(sizeof(struct Stack));
-	myStack->StackTop = NULL;
-	return myStack;
-}
-struct Stack* Stack1 = CreatStack();
 void PrintTree1(LPTREE mytree)//先序遍历
 {
 	if (mytree != NULL)
@@ -52,20 +41,6 @@ void PrintTree3(LPTREE mytree)//中序遍历
 		PrintTree3(mytree->Ltree);
 		PrintTree3(mytree->Rtree);
 		printf("%4d", mytree->data);
-	}
-}
-void PrintTree4(LPTREE mytree)
-{
-	if(mytree->Ltree!=NULL)
-	{
-		
-	}
-}
-void push(int data)
-{
-	if (Stack1 == NULL)
-	{
-
 	}
 }
 int main(void)
