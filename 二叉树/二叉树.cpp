@@ -7,6 +7,7 @@ typedef struct TREE {
 }TREE,*LPTREE;
 struct TREE* CreatTree(int data) {				//创建树节点
      LPTREE mytree=(LPTREE)malloc(sizeof(TREE));
+	 if (!mytree)exit(-1);
 	 mytree->data = data;
 	 mytree->Ltree = NULL;
 	 mytree->Rtree = NULL;
@@ -47,12 +48,19 @@ void PrintTree4(LPTREE mytree)
 	LPTREE Pmove = mytree;				//从根节点开始
 	while (stackTop != -1 || Pmove)
 	{
-		printf("%4d", Pmove->data);
-		stack[++stackTop] = Pmove;
-		Pmove = Pmove->Ltree;
+		while (Pmove)
+		{
+			printf("%4d", Pmove->data);		//打印
+			stack[++stackTop] = Pmove;		//入栈
+			Pmove = Pmove->Ltree;
+		}
+		if (stackTop != -1)
+		{
+			Pmove = stack[stackTop];       //获取栈顶指针
+			stackTop--;                    //出栈
+			Pmove = Pmove->Rtree;           //找右子树
+		}
 	}
-	
-
 }
 int main(void)
 {
@@ -64,12 +72,15 @@ int main(void)
 	
 	s1->Ltree = s2;s1->Rtree = s3;
 	s2->Ltree = s4;s2->Rtree = s5;
-	printf("递归先序遍历");
+	printf("递归先序遍历\t");
 	PrintTree1(s1);
 	printf("\n");
-	printf("递归中序遍历");
+	printf("非递归先序遍历\t");
+	PrintTree4(s1);
+	printf("\n");
+	printf("递归中序遍历\t");
 	PrintTree2(s1);
 	printf("\n");
-	printf("递归后序遍历");
+	printf("递归后序遍历\t");
 	PrintTree3(s1);
 }
