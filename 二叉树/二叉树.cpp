@@ -40,7 +40,7 @@ void PrintTree3(LPTREE mytree)				//递归后序遍历
 		printf("%4d", mytree->data);
 	}
 }
-void PrintTree4(LPTREE mytree)
+void PrintTree4(LPTREE mytree)			//非递归先序遍历
 {	 
 	if (mytree == NULL)return;
 	LPTREE stack[10];					  //存储每次打印节点的位置
@@ -62,6 +62,61 @@ void PrintTree4(LPTREE mytree)
 		}
 	}
 }
+void PrintTree5(LPTREE mytree)				//非递归中序遍历
+{
+	if (mytree == NULL)return;
+	LPTREE stack[10];					  //存储每次打印节点的位置
+	int stackTop = -1;				     //栈顶标记
+	LPTREE Pmove = mytree;
+	while (Pmove || stackTop != -1)
+	{
+		while (Pmove)
+		{											//一直找到最左边的节点
+			stack[++stackTop] = Pmove;
+			Pmove = Pmove->Ltree;
+		}
+		if (stackTop != -1)
+		{
+			Pmove = stack[stackTop];
+			stackTop--;
+			printf("%4d",Pmove->data);
+			Pmove = Pmove->Rtree;
+		}
+	}
+}
+void PrintTree6(LPTREE mytree)
+{
+	if (mytree == NULL)return;
+	LPTREE stack[10];
+	int stackTop = -1;
+	LPTREE Pmove = mytree;
+	LPTREE LastVisit = NULL;		//访问标记
+		while (Pmove)
+		{
+			stack[++stackTop] = Pmove;
+			Pmove = Pmove->Ltree;//首先移动到最左边节点
+		}
+		while (stackTop != -1)
+		{
+			Pmove = stack[stackTop];
+			stackTop--;
+			if (Pmove->Rtree == NULL || Pmove == LastVisit)//当前节点左右是否被访问
+			{
+				printf("%4d",Pmove->data);//如果访问过则打印
+				LastVisit = Pmove;
+			}
+			else 
+			{
+				stack[++stackTop] = Pmove;
+				Pmove = Pmove->Rtree;
+				while (Pmove)
+				{
+					stack[++stackTop] = Pmove;
+					Pmove = Pmove->Ltree;//首先移动右子树到最左边节点
+				}
+			}
+		}
+}
 int main(void)
 {
 	LPTREE s1 = CreatTree(1);
@@ -81,6 +136,12 @@ int main(void)
 	printf("递归中序遍历\t");
 	PrintTree2(s1);
 	printf("\n");
+	printf("非递归中序遍历\t");
+	PrintTree5(s1);
+	printf("\n");
 	printf("递归后序遍历\t");
 	PrintTree3(s1);
+	printf("\n");
+	printf("非递归后序遍历\t");
+	PrintTree6(s1);
 }
