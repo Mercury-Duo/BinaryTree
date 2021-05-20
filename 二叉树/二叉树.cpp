@@ -142,6 +142,6 @@ int main(void)
 	printf("递归后序遍历\t");
 	PrintTree3(s1);
 	printf("\n");
-	printf("非递归后序遍历\t");
-	PrintTree6(s1);
+	//printf("非递归后序遍历\t");
+	//PrintTree6(s1);
 }
